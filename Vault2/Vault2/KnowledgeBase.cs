@@ -8,50 +8,53 @@ namespace Vault2
 {
     class KnowledgeBase
     {
-        Dictionary<Topic, List<Message>> knowledge;
+        Dictionary<Dweller, List<Event>> knowledge;
 
 		public KnowledgeBase() {
-			knowledge = new Dictionary<Topic, List<Message>>();
+			knowledge = new Dictionary<Dweller, List<Event>>();
 		}
 
-        public bool knowsTopic(Topic t){
+        public bool knowsDweller(Dweller t){
             return knowledge.ContainsKey(t);
         }
 
 		//presumes knowsTopic sanitation has occurred
-		public List<Message> getMessages(Topic t) {
-			List<Message> messages = new List<Message>();
+		public List<Event> getEvents(Dweller t) {
+			List<Event> messages = new List<Event>();
 			knowledge.TryGetValue(t, out messages);
 			return messages;
 		}
 
-        public bool knowsMessage(Topic t, Message m){
-            if (!knowsTopic(t)){
+        public bool knowsMessage(Dweller t, Event m){
+            if (!knowsDweller(t)){
                 return false;
             }
             else{
-				return getMessages(t).Contains(m);
+				return getEvents(t).Contains(m);
             }
         }
 
-        public bool inputMessage(Topic t, Message m){
-            if (knowsTopic(t)){
-				if (knowsMessage(t, m)) {
-					return false;
+        public void inputMessage(Event m){
+			List<Event.Impression> impressions = m.impressions;
+			foreach (Event.Impression i in impressions) {
+				Dweller t = i.dweller;
+				if (knowsDweller(t)) {
+					if (knowsMessage(t, m)) {
+						//Nothing happens; they have the equivalent memory
+					}
+					else {
+						List<Event> newMessages = getEvents(t);
+						newMessages.Add(m);
+						knowledge.Remove(t);
+						knowledge.Add(t, newMessages);
+					}
 				}
 				else {
-					List<Message> newMessages = getMessages(t);
+					List<Event> newMessages = new List<Event>();
 					newMessages.Add(m);
-					knowledge.Remove(t);
 					knowledge.Add(t, newMessages);
 				}
-            }
-			else{
-				List<Message> newMessages = new List<Message>();
-				newMessages.Add(m);
-				knowledge.Add(t, newMessages);
 			}
-			return true;
         }
 
     }

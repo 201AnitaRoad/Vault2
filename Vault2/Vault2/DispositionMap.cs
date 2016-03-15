@@ -23,10 +23,10 @@ namespace Vault2 {
 		//returns Dweller A's disposition towards Dweller B
 		public Disposition aggregateDisposition(Dweller a, Dweller b) {
 			Disposition d = new Disposition();
-			if (a.kbase.knowsTopic(b)) {
-				List<Message> messages = a.kbase.getMessages(b);
-				foreach (Message m in messages){
-					d.value += m.dispmod;
+			if (a.kbase.knowsDweller(b)) {
+				List<Event> messages = a.kbase.getEvents(b);
+				foreach (Event m in messages){
+					//d.factorDisp(m.)
 				}
 			}
 			return d;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vault2
 {
-    class Dweller : Topic
+    class Dweller
     {
         public string name;
         public KnowledgeBase kbase;
@@ -21,8 +21,8 @@ namespace Vault2
 			kbase = new KnowledgeBase();
 		}
 
-		public void receiveMessage(Message m) {
-			kbase.inputMessage(m.t, m);
+		public void receiveMessage(Event m) {
+			kbase.inputMessage(m);
 		}
     }
 }

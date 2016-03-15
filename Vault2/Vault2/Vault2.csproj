@@ -41,15 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day.cs" />
     <Compile Include="Disposition.cs" />
     <Compile Include="DispositionMap.cs" />
     <Compile Include="Dweller.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="GameDirector.cs" />
     <Compile Include="KnowledgeBase.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="OverseerProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Topic.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="Vault.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
