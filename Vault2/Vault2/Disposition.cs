@@ -21,6 +21,13 @@ namespace Vault2 {
 			knowledge = 0;
 			descrip = "Neutral";
 		}
+		public Disposition(double r, double a, double t, double k) {
+			trust = t;
+			attraction = a;
+			respect = r;
+			knowledge = k;
+			descrip = "Neutral";
+		}
 
 		//Weight is a scalar value:
 		//Given Dispositions A and B, with a weight 0.0 -> inf

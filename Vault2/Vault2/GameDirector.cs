@@ -13,6 +13,7 @@ namespace Vault2 {
 		public List<Day> history;
 		public Day currentDay;
 		public Vault vault;
+		public EventBase events;
 
 		//CONTEMPTIBLE UI JUNK
 		public enum View { VaultMap, DwellerProfile, DispositionMap, History, Help, NewDay }
@@ -36,11 +37,28 @@ namespace Vault2 {
 			dwellers.Add(new Dweller("Dan"));
 			map = new DispositionMap(dwellers);
 			currentDay = new Day(0);
-			currentDay.events.Add(new Event("The Vault is founded!", new List<Event.Impression>()));
+			events = new EventBase();
+			
+			Event.Impression firstDayImpression;
+			firstDayImpression.dweller = new Dweller("World");
+			firstDayImpression.disposition = new Disposition(0, 0, 0, 2);
+			currentDay.events.Add(new Event("The Vault is founded!", firstDayImpression));
+			currentDay = determineDay(currentDay);
 			history = new List<Day>();
 			vault = new Vault();
 			currentDweller = dwellers[0];
 			startDay(currentDay);
+		}
+
+		public Day determineDay(Day d) {
+			Random seed = new Random();
+			int globals = Convert.ToInt32((4 * seed.NextDouble()));
+			int individ = Convert.ToInt32((4 * seed.NextDouble()));
+			int pair = Convert.ToInt32((4 * seed.NextDouble()));
+			for (int i = 0; i < globals; i++) {
+				d.events.Add(events.getRandomGlobal());
+			}
+			return d;
 		}
 
 		public void startDay(Day d){

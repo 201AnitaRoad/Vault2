@@ -13,9 +13,9 @@ namespace Vault2 {
 			public Disposition disposition;
 		};
 
-		public List<Impression> impressions;
+		public Impression impressions;
 
-		public Event(string d, List<Impression> i) {
+		public Event(string d, Impression i) {
 			description = d;
 			impressions = i;
 		}

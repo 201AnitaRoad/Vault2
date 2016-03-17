@@ -35,8 +35,7 @@ namespace Vault2
         }
 
         public void inputMessage(Event m){
-			List<Event.Impression> impressions = m.impressions;
-			foreach (Event.Impression i in impressions) {
+			Event.Impression i = m.impressions;
 				Dweller t = i.dweller;
 				if (knowsDweller(t)) {
 					if (knowsMessage(t, m)) {
@@ -54,7 +53,6 @@ namespace Vault2
 					newMessages.Add(m);
 					knowledge.Add(t, newMessages);
 				}
-			}
         }
 
     }

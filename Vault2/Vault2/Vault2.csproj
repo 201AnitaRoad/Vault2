@@ -46,6 +46,7 @@
     <Compile Include="DispositionMap.cs" />
     <Compile Include="Dweller.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventBase.cs" />
     <Compile Include="GameDirector.cs" />
     <Compile Include="KnowledgeBase.cs" />
     <Compile Include="OverseerProgram.cs" />

@@ -34,6 +34,9 @@ namespace Vault2
 					foreach (Event e in g.currentDay.events) {
 						staggerWriteLine("\t"+e.description);
 					}
+					//LOLOLOL
+					EventBase eB = new EventBase();
+					//MOVE THIS
 					Console.WriteLine("\n\n");
 					break;
 				};
